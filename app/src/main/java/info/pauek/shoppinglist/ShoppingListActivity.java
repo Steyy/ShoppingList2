@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ShoppingListActivity extends AppCompatActivity {
 
     private ArrayList<String> itemList;
-    private ArrayAdapter<String> adapter;
+    private ShoppingListAdapter adapter;
 
     private ListView list;
     private Button btn_add;
@@ -39,9 +39,9 @@ public class ShoppingListActivity extends AppCompatActivity {
         itemList.add("Zanahorias");
         itemList.add("Copas Danone");
 
-        adapter = new ArrayAdapter<>(
+        adapter = new ShoppingListAdapter(
                 this,
-                android.R.layout.simple_list_item_1,
+                R.layout.shopping_item,  //Consulta la lista y substituye los textos del layout
                 itemList
         );
 
