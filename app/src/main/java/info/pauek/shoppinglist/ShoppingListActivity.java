@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -64,6 +65,8 @@ public class ShoppingListActivity extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                //Para que me funcione desde el inicio de la app
+                Log.i("pauek", "OnItemCLick");
                 //Para comprobar si estaba desmarcado y si estaba true y marco paso a false y viceversa.
                 itemList.get(position).toggleChecked();
                 //Si hemos cambiado los datos se le tiene qwue notificar que se han cambiado los datos
