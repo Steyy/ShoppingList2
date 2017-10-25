@@ -93,7 +93,7 @@ public class ShoppingListActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             edit_item.setText("");
         }
-        list.smoothScrollToPosition(itemList.size()-1);
+        list.smoothScrollToPosition(itemList.size()-1); //Consigo que cuando añado un item me mueva la pantalla hacia arriba
 
     }
 }

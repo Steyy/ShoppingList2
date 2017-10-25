@@ -32,9 +32,11 @@ public class ShoppingListAdapter extends ArrayAdapter <ShoppingItem> {
             LayoutInflater inflater = LayoutInflater.from(getContext()); //coge fichero del layout y te crea todos los obhetos en pantalla.
             result = inflater.inflate(R.layout.shopping_item, null);
         }
-        CheckBox shopping_item = (CheckBox) result.findViewById(R.id.shopping_item); //Busco el CheckBox dentro del item de la lista que he encontrado
+        CheckBox checkbox = (CheckBox) result.findViewById(R.id.shopping_item); //Busco el CheckBox dentro del item de la lista que he encontrado
         ShoppingItem item = getItem(position);
-        shopping_item.setText(item.getText());
+        checkbox.setText(item.getText());
+        //Ya tengo la info de si está marcada esa casilla o no por tanto lo añado
+        checkbox.setChecked(item.isChecked());
         return result;
     }
 }
