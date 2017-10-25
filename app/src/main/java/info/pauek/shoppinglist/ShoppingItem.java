@@ -5,15 +5,33 @@ package info.pauek.shoppinglist;
  */
 
 public class ShoppingItem {
+    //Simplemente son una pareja de datos
     private String text;
     private boolean checked;
 
     public ShoppingItem(String text) {
         this.text = text;
+        this.checked = false;
     }
 
     public ShoppingItem(String text, boolean checked) {
         this.text = text;
+        this.checked = checked;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
         this.checked = checked;
     }
 }
