@@ -60,6 +60,17 @@ public class ShoppingListActivity extends AppCompatActivity {
         });
 
         list.setAdapter(adapter);
+        //Para enterarnos cuando clico una psoición determinada
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                //Para comprobar si estaba desmarcado y si estaba true y marco paso a false y viceversa.
+                itemList.get(position).toggleChecked();
+                //Si hemos cambiado los datos se le tiene qwue notificar que se han cambiado los datos
+                adapter.notifyDataSetChanged();
+
+            }
+        });
 
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

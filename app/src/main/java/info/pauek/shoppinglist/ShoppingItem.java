@@ -34,4 +34,9 @@ public class ShoppingItem {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
+
+    public void toggleChecked() {
+        //Con esto hago el inverso de lo que hace si estaba true lo paso false y viceversa.
+        this.checked = !this.checked
+    }
 }
