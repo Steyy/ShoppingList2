@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class ShoppingListActivity extends AppCompatActivity {
 
     private static final String FILENAME = "shopping_list";
+    private static final int MAX_BYTES = 8000;
 
     private ArrayList<ShoppingItem> itemList;
     private ShoppingListAdapter adapter;
@@ -52,6 +54,28 @@ public class ShoppingListActivity extends AppCompatActivity {
 
     }
 
+    private void readItemList(){
+        itemList = new ArrayList<>();
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            byte[] buffer = new byte[MAX_BYTES];
+            int nread = fis.read(buffer);
+            String content = new String(buffer, 0, nread);
+            String[] lines = content.split("\n");
+            for (String line : lines) {
+                String[] parts = line.split(",");
+                itemList.add(new ShoppingItem(parts[0], parts[1].equals("true")));
+
+            }
+            fis.close();
+        } catch (FileNotFoundException e) {
+            Log.i("pauek", "readItemList: FileNotFoundException");
+        } catch (IOException e) {
+            Log.e("pauek", "readItemList: IOException");
+            Toast.makeText(this, R.string.cannot_read, Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -67,11 +91,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         btn_add = (Button) findViewById(R.id.btn_add);
         edit_item = (EditText) findViewById(R.id.edit_item);
 
-        itemList = new ArrayList<>();
-        itemList.add(new ShoppingItem("Patatas", true));
-        itemList.add(new ShoppingItem ("Papel WC", true));
-        itemList.add(new ShoppingItem ("Zanahorias"));
-        itemList.add(new ShoppingItem("Copas Danone"));
+        readItemList();
 
         adapter = new ShoppingListAdapter(
                 this,
